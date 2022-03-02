@@ -13,7 +13,7 @@
 			</div>
 			<div class="ht-right">
 				<a href="loginForm.do" class="login-panel"><i
-					class="fa fa-user"></i>Login</a>
+					class="fa fa-user"></i>Login</a>				
 				<div class="lan-selector">
 					<select class="language_drop" name="countries" id="countries"
 						style="width: 300px;">
@@ -21,7 +21,7 @@
 							data-imagecss="flag yt" data-title="English">English</option>
 						<option value='yu' data-image="img/flag-2.jpg"
 							data-imagecss="flag yu" data-title="Bangladesh">German</option>
-					</select>
+					</select>					
 				</div>
 				<div class="top-social">
 					<a href="#"><i class="ti-facebook"></i></a> <a href="#"><i

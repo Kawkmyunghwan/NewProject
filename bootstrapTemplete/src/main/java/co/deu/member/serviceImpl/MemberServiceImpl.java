@@ -84,6 +84,31 @@ public class MemberServiceImpl extends DAO implements MemberService {
 		}
 		return r;
 	}
+	
+	@Override
+	public MemberVO memberLogin(MemberVO vo) {
+		// 로그인
+		String sql = "SELECT * FROM MEMBERS WHERE ID = ? AND PASSWORD = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getId());
+			psmt.setString(2, vo.getPassword());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setId(rs.getString("id"));
+				vo.setPassword(rs.getString("password"));
+				vo.setName(rs.getString("name"));
+				vo.setAddress(rs.getString("address"));
+				vo.setTel(rs.getString("tel"));
+				vo.setAuthor(rs.getString("author"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return vo;
+	}
 
 	@Override
 	public int updateMember(MemberVO vo) {

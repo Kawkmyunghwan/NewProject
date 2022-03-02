@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.edu.member.web.Login;
 import co.edu.member.web.LoginForm;
+import co.edu.member.web.RegisterForm;
 
 
 //@WebServlet("/FrontController")
@@ -27,7 +29,8 @@ public class FrontController extends HttpServlet {
 		// TODO 호출명 저장소
 		map.put("/main.do", new MainPage()); // 시작페이지
 		map.put("/loginForm.do", new LoginForm());
-			
+		map.put("/registerForm.do", new RegisterForm());
+		map.put("/login.do", new Login());
 		
 	}
 
