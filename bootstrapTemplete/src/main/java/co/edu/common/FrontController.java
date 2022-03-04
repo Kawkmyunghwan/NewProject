@@ -12,7 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.edu.member.web.Login;
 import co.edu.member.web.LoginForm;
+import co.edu.member.web.Logout;
+import co.edu.member.web.Register;
 import co.edu.member.web.RegisterForm;
+import co.edu.product.web.Checkout;
+import co.edu.product.web.DetailProduct;
+import co.edu.product.web.End;
+import co.edu.product.web.ForeignBook;
+import co.edu.product.web.KoreaBook;
+import co.edu.product.web.NewBook;
+import co.edu.product.web.Quickbuy;
+import co.edu.queryboard.web.Queryboard;
 
 
 //@WebServlet("/FrontController")
@@ -31,7 +41,16 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginForm());
 		map.put("/registerForm.do", new RegisterForm());
 		map.put("/login.do", new Login());
-		
+		map.put("/register.do", new Register());
+		map.put("/logOut.do", new Logout());
+		map.put("/queryboard.do", new Queryboard());
+		map.put("/newBook.do", new NewBook());
+		map.put("/koreaBook.do", new KoreaBook());
+		map.put("/foreignBook.do", new ForeignBook());
+		map.put("/quickbuy.do", new Quickbuy());
+		map.put("/checkout.do", new Checkout());
+		map.put("/end.do", new End());
+		map.put("/detailproduct.do", new DetailProduct());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

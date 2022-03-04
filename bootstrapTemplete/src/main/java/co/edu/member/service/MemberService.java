@@ -2,7 +2,7 @@ package co.edu.member.service;
 
 import java.util.List;
 
-import co.deu.member.vo.MemberVO;
+import co.edu.member.vo.MemberVO;
 
 public interface MemberService {
 	List<MemberVO> selectMemberList();
@@ -13,4 +13,5 @@ public interface MemberService {
 	public MemberVO loginCheck(MemberVO vo);
 	
 	public MemberVO memberLogin(MemberVO vo);
+	public boolean idCheck(String id);
 }

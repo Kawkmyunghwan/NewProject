@@ -4,10 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import co.deu.member.serviceImpl.MemberServiceImpl;
-import co.deu.member.vo.MemberVO;
 import co.edu.common.DbCommand;
 import co.edu.member.service.MemberService;
+import co.edu.member.serviceImpl.MemberServiceImpl;
+import co.edu.member.vo.MemberVO;
 
 public class Login implements DbCommand {
 
@@ -23,7 +23,7 @@ public class Login implements DbCommand {
 		
 		vo = member.memberLogin(vo);
 
-		if(vo.getId() != null) {
+		if(vo.getId() != request.getParameter("id")) {
 			//세션 처리
 			session.setAttribute("id", vo.getId()); // 세션에 아이디 담기
 			session.setAttribute("author", vo.getAuthor()); // 세션에 권한 담기

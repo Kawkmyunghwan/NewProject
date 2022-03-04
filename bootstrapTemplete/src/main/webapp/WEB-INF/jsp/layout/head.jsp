@@ -1,19 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <header class="header-section">
 	<div class="header-top">
 		<div class="container">
 			<div class="ht-left">
 				<div class="mail-service">
-					<i class=" fa fa-envelope"></i> hello.colorlib@gmail.com
+					<i class=" fa fa-envelope"></i> ${id}
 				</div>
 				<div class="phone-service">
-					<i class=" fa fa-phone"></i> +65 11.188.888
+					<i class=" fa fa-phone"></i> ${name}
 				</div>
 			</div>
 			<div class="ht-right">
-				<a href="loginForm.do" class="login-panel"><i
-					class="fa fa-user"></i>Login</a>				
+			<c:if test='${empty id }'>
+				<a href="loginForm.do" class="login-panel">			
+				<i class="fa fa-user"></i>Login</a>
+			</c:if>
+			<c:if test='${not empty id }'>
+				<a href="logOut.do" class="login-panel">			
+				<i class="fa fa-user"></i>Logout</a>
+			</c:if>		
+												
 				<div class="lan-selector">
 					<select class="language_drop" name="countries" id="countries"
 						style="width: 300px;">
@@ -122,15 +130,10 @@
 			</div>
 			<nav class="nav-menu mobile-menu">
 				<ul>
-					<li class="active"><a href="./index.html">홈</a></li>
-					<li><a href="./shop.html">랭킹</a></li>
-					<li><a href="#">브랜드별</a>
-						<ul class="dropdown">
-							<li><a href="#">Men's</a></li>
-							<li><a href="#">Women's</a></li>
-							<li><a href="#">Kid's</a></li>
-						</ul></li>
-					<li><a href="./blog.html">전체상품</a></li>
+					<li><a href="newBook.do">화제의 신간</a></li>
+					<li><a href="koreaBook.do">국내도서</a></li>
+					<li><a href="foreignBook.do">해외도서</a>										
+					<li><a href="queryboard.do">문의 게시판</a></li>
 				</ul>
 			</nav>
 			<div id="mobile-menu-wrap"></div>

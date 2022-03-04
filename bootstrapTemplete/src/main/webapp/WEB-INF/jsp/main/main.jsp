@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="product-shop spad">
 	<div class="container">
 		<div class="row">
@@ -24,235 +25,46 @@
 					</div>
 				</div>
 			</div>
+			<form action="quickbuy.do" method="get" name="quickFrm" >
+				<input type="hidden" name="bookId">		
+			</form>
+			<form action="detailproduct.do" method="get" name="quickFrm1" >
+			<input type="hidden" name="bookId">		
+			</form>
 			<div class="product-list">
-				<div class="row">
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-1.jpg" alt="">
-								<div class="sale pp-sale">Sale</div>
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
+				<div class="row">				
+					<c:forEach items="${bookList}" var="list">
+						<div class="col-lg-4 col-sm-6">
+							<div class="product-item">
+								<div class="pi-pic">
+									<img src="upload/${list.image}" onclick='formFnc1(${list.bookId})' alt="">
+									<div class="sale pp-sale">Sale</div>
+									<div class="icon">
+										<i class="icon_heart_alt"></i>
+									</div>
+									<ul>
+										<li class="w-icon active"><a href="#"><i
+												class="icon_bag_alt"></i></a></li>
+										<li class="quick-view">
+										<button onclick='formFnc(${list.bookId})'>바로 구매</button>
+										</li>
+										<li class="w-icon"><a href="#"><i
+												class="fa fa-random"></i></a></li>
+									</ul>
 								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Towel</div>
-								<a href="#">
-									<h5>Pure Pineapple</h5>
-								</a>
-								<div class="product-price">
-									$14.00 <span>$35.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-2.jpg" alt="">
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
-								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Coat</div>
-								<a href="#">
-									<h5>Guangzhou sweater</h5>
-								</a>
-								<div class="product-price">
-									$13.00 <span>$35.00</span>
+								<div class="pi-text">
+									<div class="catagory-name">${list.bookCompany }</div>
+									<a href="#">
+										<h5>${list.bookName }</h5>
+									</a>
+									<div class="product-price">
+										₩ ${list.bookPrice } <span></span>
+									</div>
+									<input type="hidden" id="bookId" name="bookId" value="${list.bookId}">
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-3.jpg" alt="">
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
-								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Shoes</div>
-								<a href="#">
-									<h5>Guangzhou sweater</h5>
-								</a>
-								<div class="product-price">
-									$34.00 <span>$35.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-4.jpg" alt="">
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
-								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Coat</div>
-								<a href="#">
-									<h5>Microfiber Wool Scarf</h5>
-								</a>
-								<div class="product-price">
-									$64.00 <span>$35.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-5.jpg" alt="">
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
-								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Shoes</div>
-								<a href="#">
-									<h5>Men's Painted Hat</h5>
-								</a>
-								<div class="product-price">
-									$44.00 <span>$35.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-6.jpg" alt="">
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
-								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Shoes</div>
-								<a href="#">
-									<h5>Converse Shoes</h5>
-								</a>
-								<div class="product-price">
-									$34.00 <span>$35.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-7.jpg" alt="">
-								<div class="sale pp-sale">Sale</div>
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
-								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Towel</div>
-								<a href="#">
-									<h5>Pure Pineapple</h5>
-								</a>
-								<div class="product-price">
-									$64.00 <span>$35.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-8.jpg" alt="">
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
-								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Coat</div>
-								<a href="#">
-									<h5>2 Layer Windbreaker</h5>
-								</a>
-								<div class="product-price">
-									$44.00 <span>$35.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-6">
-						<div class="product-item">
-							<div class="pi-pic">
-								<img src="img/products/product-9.jpg" alt="">
-								<div class="icon">
-									<i class="icon_heart_alt"></i>
-								</div>
-								<ul>
-									<li class="w-icon active"><a href="#"><i
-											class="icon_bag_alt"></i></a></li>
-									<li class="quick-view"><a href="#">+ Quick View</a></li>
-									<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-								</ul>
-							</div>
-							<div class="pi-text">
-								<div class="catagory-name">Shoes</div>
-								<a href="#">
-									<h5>Converse Shoes</h5>
-								</a>
-								<div class="product-price">
-									$34.00 <span>$35.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
+						</div>					
+					</c:forEach>				
 				</div>
 			</div>
 			<div class="loading-more">
@@ -260,5 +72,20 @@
 			</div>
 		</div>
 	</div>
-	</div>
 </section>
+
+<script>
+function formFnc(book_id) {
+	event.preventDefault();
+	console.log(book_id)
+	quickFrm.bookId.value=book_id;
+	quickFrm.submit();
+}
+
+function formFnc1(book_id) {
+	event.preventDefault();
+	console.log(book_id)
+	quickFrm1.bookId.value=book_id;
+	quickFrm1.submit();
+}
+</script>
