@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.edu.cart.web.DropdownCart;
+import co.edu.cart.web.Gotocart;
+import co.edu.cart.web.Qucikcart;
 import co.edu.member.web.Login;
 import co.edu.member.web.LoginForm;
 import co.edu.member.web.Logout;
@@ -21,6 +24,7 @@ import co.edu.product.web.End;
 import co.edu.product.web.ForeignBook;
 import co.edu.product.web.KoreaBook;
 import co.edu.product.web.NewBook;
+import co.edu.product.web.Psearch;
 import co.edu.product.web.Quickbuy;
 import co.edu.queryboard.web.Queryboard;
 
@@ -51,6 +55,10 @@ public class FrontController extends HttpServlet {
 		map.put("/checkout.do", new Checkout());
 		map.put("/end.do", new End());
 		map.put("/detailproduct.do", new DetailProduct());
+		map.put("/gotocart.do", new Gotocart());
+		map.put("/quickcart.do", new Qucikcart());
+		map.put("/search.do", new Psearch());
+		map.put("/dropdowncart.do", new DropdownCart());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

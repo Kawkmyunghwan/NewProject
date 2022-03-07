@@ -174,7 +174,10 @@
                                     <div class="pro-qty">
                                         <input type="text" value="1">
                                     </div>
-                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                    <form action="gotocart.do" method="get" name="quickFrm">
+                                    	<button onclick='formFnc(${bookSelect.bookId})' class="primary-btn pd-cart">Add To Cart</button>
+                                    	<input type="hidden" name="bookId">
+                                    </form>
                                 </div>
                                 <ul class="pd-tags">
                                     <li><span>CATEGORIES</span>: More Accessories, Wallets & Cases</li>
@@ -360,4 +363,12 @@
             </div>
         </div>
     </section>
-    <!-- Product Shop Section End -->
+<script>
+	function formFnc(book_id) {
+		event.preventDefault();
+		console.log(book_id)
+		quickFrm.bookId.value = book_id;
+		quickFrm.submit();
+	}
+</script>
+<!-- Product Shop Section End -->

@@ -15,9 +15,33 @@ public class CartServiceImpl extends DAO implements CartService {
 	private PreparedStatement psmt;
 	private ResultSet rs;
 	@Override
-	public List<CartVO> selectCartList() {
-		return null;	
+	public List<CartVO> selectCartList(String id) {		
+		List<CartVO> list = new ArrayList<>();
+		String sql = "SELECT p.bookId, p.bookName, p.bookPrice, p.bookCompany, p.image, c.id \r\n"
+				+ "FROM  product p JOIN cart c ON(p.bookid = c.bookid) WHERE ID = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CartVO vo = new CartVO();
+				vo.setBookId(rs.getString("bookId"));				
+				vo.setId(rs.getString("id"));
+				vo.setBookCompany(rs.getString("bookCompany"));
+				vo.setBookName(rs.getString("bookName"));
+				vo.setBookPrice(rs.getInt("bookPrice"));
+				vo.setImage(rs.getString("image"));
+				list.add(vo);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
 	}
+
+	//product 테이블과 cart 테이블을 JOIN 해서 가져오기
 
 	@Override
 	public CartVO select(CartVO vo) {
@@ -27,15 +51,12 @@ public class CartServiceImpl extends DAO implements CartService {
 
 	@Override
 	public int insert(CartVO vo) {
-		String sql = "INSERT INTO CART(BOOKID, BOOKNAME, BOOKPRICE, BOOKQUANTITY, IMAGE) VALUES(?,?,?,CART_ID_SEQ.NEXTVAL,?)";
+		String sql = "INSERT INTO CART(BOOKID, id) VALUES(?,?)";
 		int r = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookId());
-			psmt.setString(2, vo.getBookName());			
-			psmt.setInt(3, vo.getBookPrice());
-			psmt.setInt(4, vo.getBookQuantity());		
-			psmt.setString(5, vo.getImage());
+			psmt.setString(2, vo.getId());
 
 			r = psmt.executeUpdate();
 			System.out.println(r + "건 입력.");

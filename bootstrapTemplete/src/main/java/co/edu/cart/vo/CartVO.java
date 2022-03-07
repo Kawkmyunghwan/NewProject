@@ -2,22 +2,23 @@ package co.edu.cart.vo;
 
 public class CartVO {
 	private String bookId;
+	private String id;
 	private String bookName;
 	private int bookPrice;
-	private int bookQuantity;
+	private String bookCompany;
 	private String image;
 	
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public String getBookId() {
 		return bookId;
 	}
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getBookName() {
 		return bookName;
@@ -31,18 +32,30 @@ public class CartVO {
 	public void setBookPrice(int bookPrice) {
 		this.bookPrice = bookPrice;
 	}
-	public int getBookQuantity() {
-		return bookQuantity;
+	public String getBookCompany() {
+		return bookCompany;
 	}
-	public void setBookQuantity(int bookQuantity) {
-		this.bookQuantity = bookQuantity;
+	public void setBookCompany(String bookCompany) {
+		this.bookCompany = bookCompany;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	@Override
 	public String toString() {
-		return "CartVO [bookId=" + bookId + ", bookName=" + bookName + ", bookPrice=" + bookPrice + ", bookQuantity="
-				+ bookQuantity + "]";
+		return "CartVO [bookId=" + bookId + ", id=" + id + ", bookName=" + bookName + ", bookPrice=" + bookPrice
+				+ ", bookCompany=" + bookCompany + ", image=" + image + "]";
 	}
+	
+	
+	
+	
+	
+
 	
 	
 }

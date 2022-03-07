@@ -12,7 +12,7 @@ public class MainPage implements DbCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		ProductService Dao = new ProductServiceImpl();		
-		request.setAttribute("bookList", Dao.selectList()); 	
+		request.setAttribute("bookList", Dao.selectList(null)); 	
 		
 		return "main/main.tiles";
 	}

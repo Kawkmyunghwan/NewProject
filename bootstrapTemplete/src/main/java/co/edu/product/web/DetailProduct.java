@@ -22,7 +22,7 @@ public class DetailProduct implements DbCommand {
 		vo = service.select(vo);
 		
 		request.setAttribute("bookSelect", vo);
-		
+		System.out.println(vo.getBookCompany());
 		return "main/detailproduct.tiles";
 	}
 

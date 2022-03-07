@@ -25,12 +25,18 @@
 					</div>
 				</div>
 			</div>
-			<form action="quickbuy.do" method="get" name="quickFrm" >
-				<input type="hidden" name="bookId">		
+			<form action="quickbuy.do" method="get" name="quickFrm">
+				<input type="hidden" name="bookId">
 			</form>
-			<form action="detailproduct.do" method="get" name="quickFrm1" >
-			<input type="hidden" name="bookId">		
+			
+			<form action="detailproduct.do" method="get" name="quickFrm1">
+				<input type="hidden" name="bookId">
 			</form>
+			
+			<form action="quickcart.do" method="get" name="quickFrm2">
+				<input type="hidden" name="bookId">
+			</form>
+			
 			<div class="product-list">
 				<div class="row">				
 					<c:forEach items="${bookList}" var="list">
@@ -43,10 +49,10 @@
 										<i class="icon_heart_alt"></i>
 									</div>
 									<ul>
-										<li class="w-icon active"><a href="#"><i
+										<li class="w-icon active"><a href="" onclick='formFnc2(${list.bookId})'> <i
 												class="icon_bag_alt"></i></a></li>
 										<li class="quick-view">
-										<button onclick='formFnc(${list.bookId})'>바로 구매</button>
+											<button onclick='formFnc(${list.bookId})'>바로 구매</button>
 										</li>
 										<li class="w-icon"><a href="#"><i
 												class="fa fa-random"></i></a></li>
@@ -88,4 +94,11 @@ function formFnc1(book_id) {
 	quickFrm1.bookId.value=book_id;
 	quickFrm1.submit();
 }
+function formFnc2(book_id) {
+	event.preventDefault();
+	console.log(book_id)
+	quickFrm2.bookId.value=book_id;
+	quickFrm2.submit();
+}
+
 </script>

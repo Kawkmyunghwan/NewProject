@@ -16,32 +16,34 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	private PreparedStatement psmt;
 	private ResultSet rs;
 	@Override
-	public List<ProductVO> selectList() {
-		List<ProductVO> list = new ArrayList<>();
-		ProductVO vo;
-		String sql = "SELECT * FROM PRODUCT";
-		try {
-			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery();
-			while(rs.next()) {
-				vo = new ProductVO();
-				vo.setBookId(rs.getString("bookId"));
-				vo.setBookName(rs.getString("bookName"));
-				vo.setBookPrice(rs.getInt("bookPrice"));
-				vo.setBookCompany(rs.getString("bookCompany"));
-				vo.setBookContent(rs.getString("bookContent"));
-				vo.setBookNum(rs.getInt("bookNum"));
-				vo.setImage(rs.getString("image"));
-				
-				list.add(vo);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close();
-		}
-		return list;	
-	}
+	public List<ProductVO> selectList(String cond) {
+	      List<ProductVO> list = new ArrayList<>();
+	      ProductVO vo;
+	      String sql = "select * from product\r\n"
+	            + "where bookname like nvl('%'||?||'%', bookName)";
+	      try {
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, cond);
+	         rs = psmt.executeQuery();
+	         while(rs.next()) {
+	            vo = new ProductVO();
+	            vo.setBookId(rs.getString("bookId"));
+	            vo.setBookName(rs.getString("bookName"));
+	            vo.setBookPrice(rs.getInt("bookPrice"));
+	            vo.setBookCompany(rs.getString("bookCompany"));
+	            vo.setBookContent(rs.getString("bookContent"));
+	            vo.setBookNum(rs.getInt("bookNum"));
+	            vo.setImage(rs.getString("image"));
+	            
+	            list.add(vo);
+	         }
+	      }catch(SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close();
+	      }
+	      return list;   
+	   }
 
 	@Override
 	public ProductVO select(ProductVO vo) {
