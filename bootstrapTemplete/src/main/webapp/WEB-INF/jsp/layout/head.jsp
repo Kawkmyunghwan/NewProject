@@ -20,17 +20,13 @@
 			<c:if test='${not empty id }'>
 				<a href="logOut.do" class="login-panel">			
 				<i class="fa fa-user"></i>Logout</a>
-			</c:if>		
+			</c:if>	
+			<c:if test='${not empty id }'>
+				<a href="mypage.do" class="login-panel" style="padding-right: 15px">			
+				<i class="fa fa-user"></i>My Page</a>
+			</c:if>	
 												
-				<div class="lan-selector">
-					<select class="language_drop" name="countries" id="countries"
-						style="width: 300px;">
-						<option value='yt' data-image="img/flag-1.jpg"
-							data-imagecss="flag yt" data-title="English">English</option>
-						<option value='yu' data-image="img/flag-2.jpg"
-							data-imagecss="flag yu" data-title="Bangladesh">German</option>
-					</select>					
-				</div>
+				
 				<div class="top-social">
 					<a href="#"><i class="ti-facebook"></i></a> <a href="#"><i
 						class="ti-twitter-alt"></i></a> <a href="#"><i class="ti-linkedin"></i></a>
@@ -68,7 +64,7 @@
 						<li class="heart-icon"><a href="#"> <i
 								class="icon_heart_alt"></i> <span>1</span>
 						</a></li>
-						<li class="cart-icon"><a href="dropdowncart.do"> <i
+						<li class="cart-icon"><a href="#"> <i
 								class="icon_bag_alt"></i> <span>3</span>
 						</a>
 							<div class="cart-hover">

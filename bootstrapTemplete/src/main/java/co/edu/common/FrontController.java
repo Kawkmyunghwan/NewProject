@@ -16,6 +16,7 @@ import co.edu.cart.web.Qucikcart;
 import co.edu.member.web.Login;
 import co.edu.member.web.LoginForm;
 import co.edu.member.web.Logout;
+import co.edu.member.web.Mypage;
 import co.edu.member.web.Register;
 import co.edu.member.web.RegisterForm;
 import co.edu.product.web.Checkout;
@@ -59,8 +60,8 @@ public class FrontController extends HttpServlet {
 		map.put("/quickcart.do", new Qucikcart());
 		map.put("/search.do", new Psearch());
 		map.put("/dropdowncart.do", new DropdownCart());
+		map.put("/mypage.do", new Mypage());
 	}
-
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO 실제처리할 command를 호출하고, 결과를 돌려줄 페이지를 작성하는 곳
