@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
@@ -68,11 +69,11 @@
                             <div class="order-total">
                                 <ul class="order-table">
                                     <li>Product <span>Total</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
-                                    <li class="fw-normal">Subtotal <span>$240.00</span></li>
-                                    <li class="total-price">Total <span>$240.00</span></li>
+								<c:forEach items="bookId" var="product">
+									<li class="fw-normal">Combination x 1 <span>${bookId.bookName}</span></li>
+								</c:forEach>
+								<li class="fw-normal">Subtotal <span>${bookId.bookPrice }</span></li>
+                                    <li class="total-price">Total <span>${bookId.bookPrice }</span></li>
                                 </ul>
                                 <div class="payment-check">
                                     <div class="pc-item">

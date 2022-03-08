@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.common.DAO;
-import co.edu.member.vo.MemberVO;
 import co.edu.product.service.ProductService;
 import co.edu.product.vo.ProductVO;
 
@@ -129,6 +128,50 @@ public class ProductServiceImpl extends DAO implements ProductService {
 			close();
 		}
 		return r;
+	}
+	
+	public List<ProductVO> selectListPaging(int page) {
+		String sql = "SELECT b.rn\r\n"//
+				+ "      ,b.*\r\n"//
+				+ "FROM   (SELECT ROWNUM rn\r\n"//
+				+ "              ,a.*\r\n"//
+				+ "        FROM   (SELECT *\r\n"//
+				+ "                FROM   product\r\n"//
+				+ "                ORDER  BY 1) a) b\r\n"//
+				+ "WHERE  b.rn BETWEEN ? AND ?";
+
+		List<ProductVO> list = new ArrayList<>();
+		int firstCnt = 0, lastCnt = 0;
+
+		firstCnt = (page - 1) * 6 + 1;
+		lastCnt = (page * 6);
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, firstCnt);
+			psmt.setInt(2, lastCnt);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setBookId(rs.getString("bookId"));
+				vo.setBookName(rs.getString("bookName"));
+				vo.setBookPrice(rs.getInt("bookPrice"));
+				vo.setBookCompany(rs.getString("bookCompany"));
+				vo.setBookContent(rs.getString("bookContent"));
+				vo.setBookNum(rs.getInt("bookNum"));
+				vo.setImage(rs.getString("image"));
+
+				list.add(vo);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return list;
+
 	}
 	
 	private void close() {

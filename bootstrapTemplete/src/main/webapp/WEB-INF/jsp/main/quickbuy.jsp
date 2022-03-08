@@ -63,7 +63,7 @@
                                     <li class="subtotal">Subtotal <span>$240.00</span></li>
                                     <li class="cart-total">Total <span>$240.00</span></li>
                                 </ul>
-                                <a href="checkout.do" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                                <a href="javascript:goPage(${bookSelect.bookId})" class="proceed-btn">PROCEED TO CHECK OUT</a>
                             </div>
                         </div>
                     </div>
@@ -72,3 +72,9 @@
         </div>
     </section>
     <!-- Shopping Cart Section End -->
+    <script>
+    function goPage(page) {
+    	location.href = "checkout.do?bookId=" + page;
+    }
+    </script>
+    

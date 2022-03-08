@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.edu.cart.web.Checkoutcart;
 import co.edu.cart.web.DropdownCart;
 import co.edu.cart.web.Gotocart;
 import co.edu.cart.web.Qucikcart;
@@ -24,6 +25,7 @@ import co.edu.product.web.DetailProduct;
 import co.edu.product.web.End;
 import co.edu.product.web.ForeignBook;
 import co.edu.product.web.KoreaBook;
+import co.edu.product.web.MainListPaging;
 import co.edu.product.web.NewBook;
 import co.edu.product.web.Psearch;
 import co.edu.product.web.Quickbuy;
@@ -61,6 +63,8 @@ public class FrontController extends HttpServlet {
 		map.put("/search.do", new Psearch());
 		map.put("/dropdowncart.do", new DropdownCart());
 		map.put("/mypage.do", new Mypage());
+		map.put("/mainListPaging.do", new MainListPaging());
+		map.put("/checkoutcart.do", new Checkoutcart());
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -90,5 +94,4 @@ public class FrontController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 	}
-
 }

@@ -42,7 +42,6 @@
 							</c:if>
 						</c:forEach>
 
-
 					</table>                                              
                     </div>
                     <div class="row">
@@ -65,7 +64,10 @@
                                     <li class="subtotal">Subtotal <span>$240.00</span></li>
                                     <li class="cart-total">Total <span>$240.00</span></li>
                                 </ul>
-                                <a href="checkout.do" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                               		<a href="javascript:goPage()" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                               		<c:forEach items="cartList" var="list">
+                               			<input type="hidden" id="list" name="list" value="${list.bookId }">                             			
+                              		</c:forEach>
                             </div>
                         </div>
                     </div>
@@ -73,9 +75,9 @@
             </div>
         </div>
     </section>
-    <script>
-    function subtotal(){
-    	
-    }
-    </script>
-    <!-- Shopping Cart Section End -->
+<script>
+	function goPage(page) {
+		location.href = "checkout.do?bookId=" + page;
+	}
+</script>
+<!-- Shopping Cart Section End -->
