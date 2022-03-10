@@ -10,6 +10,7 @@ import co.edu.buycart.service.BuyCartService;
 import co.edu.buycart.vo.BuyCartVO;
 import co.edu.cart.vo.CartVO;
 import co.edu.common.DAO;
+import co.edu.product.vo.ProductVO;
 
 public class BuyCartServiceImpl extends DAO implements BuyCartService {
 
@@ -19,11 +20,10 @@ public class BuyCartServiceImpl extends DAO implements BuyCartService {
 	@Override
 	public List<BuyCartVO> selectCartList(String id) {
 		List<BuyCartVO> list = new ArrayList<>();
-		String sql = "SELECT p.bookId, p.bookName, p.bookPrice, p.bookCompany, p.image, c.id\r\n"
-				+ "FROM  product p, cart c, buycart b\r\n"
-				+ "WHERE p.bookId = c.bookId\r\n"
-				+ "AND   c.id = b.id\r\n"
-				+ "AND   b.id = ?";
+		String sql = "select p.bookId, p.bookName, p.bookPrice, p.bookcompany, p.image, b.id\r\n"
+				+ "FROM buycart b, product p\r\n"
+				+ "WHERE b.bookid = p.bookid\r\n"
+				+ "AND b.id = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
@@ -48,9 +48,31 @@ public class BuyCartServiceImpl extends DAO implements BuyCartService {
 
 	@Override
 	public BuyCartVO select(BuyCartVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String sql = "SELECT p.bookId, p.bookName, p.bookPrice, p.bookCompany, p.image, c.id\r\n"
+				+ "FROM  product p, cart c, buycart b\r\n"
+				+ "WHERE p.bookId = c.bookId\r\n"
+				+ "AND   c.id = b.id\r\n"
+				+ "AND   b.id = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getBookId());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new BuyCartVO();
+				vo.setBookId(rs.getString("bookId"));				
+				vo.setId(rs.getString("id"));
+				vo.setBookCompany(rs.getString("bookCompany"));
+				vo.setBookName(rs.getString("bookName"));
+				vo.setBookPrice(rs.getInt("bookPrice"));
+				vo.setImage(rs.getString("image"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return vo;
+	}	
 
 	@Override
 	public int insert(BuyCartVO vo) {

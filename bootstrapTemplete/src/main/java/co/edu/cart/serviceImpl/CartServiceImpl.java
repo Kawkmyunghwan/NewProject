@@ -81,7 +81,7 @@ public class CartServiceImpl extends DAO implements CartService {
 		int r = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getBookId());
+			psmt.setString(1, vo.getId());
 			r = psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

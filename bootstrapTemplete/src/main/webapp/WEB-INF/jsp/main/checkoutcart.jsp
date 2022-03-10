@@ -108,23 +108,21 @@
 	</div>
 </section>
 <!-- Shopping Cart Section End -->
-
-<!-- jQuery -->
 <script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+   src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+   src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-	
+   
     var IMP = window.IMP;
     IMP.init("imp66037800"); // "iamport
     
     //function requestPay() {
-    	//event.preventDefault();
+       //event.preventDefault();
        // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({
-			pg: 'kakaopay',
+         pg: 'kakaopay',
             pay_method: 'kakaopay',
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: "노르웨이 회전 의자",
@@ -136,14 +134,15 @@
             buyer_postcode: "01181"
         }, function (rsp) { // callback
             if (rsp.success) {
-            	alert('결제성공')
+               alert('결제성공')
                 frm.submit();              
-            } else {              	
+            } else {                 
                 alert('결제실패')
                 frm1.submit();
             }
         });
         
         //document.getElementById("btn").addEventListener('click', requestPay);
-             	       
+                       
     </script>    
+<!-- jQuery -->
