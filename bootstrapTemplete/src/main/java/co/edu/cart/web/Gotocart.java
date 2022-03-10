@@ -25,6 +25,7 @@ public class Gotocart implements DbCommand {
 		ProductVO productVo = new ProductVO();
 		
 		String bookId = request.getParameter("bookId");
+		System.out.println(bookId);
 		productVo.setBookId(bookId);
 		
 		productVo = productService.select(productVo); // ProductVo = bookId가 1인 정보들을 조회해서 담아준 값

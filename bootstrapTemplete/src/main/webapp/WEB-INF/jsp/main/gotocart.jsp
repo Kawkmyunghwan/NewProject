@@ -42,7 +42,8 @@
 							</c:if>
 						</c:forEach>
 
-					</table>                                              
+					</table>     
+					${cartList }                                         
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
@@ -65,7 +66,7 @@
                                     <li class="cart-total">Total <span>$240.00</span></li>
                                 </ul>
                                		<a href="javascript:goPage()" class="proceed-btn">PROCEED TO CHECK OUT</a>
-                               		<c:forEach items="cartList" var="list">
+                               		<c:forEach items="${cartList }" var="list">
                                			<input type="hidden" id="list" name="list" value="${list.bookId }">                             			
                               		</c:forEach>
                             </div>

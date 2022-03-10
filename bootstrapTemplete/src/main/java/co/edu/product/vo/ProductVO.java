@@ -57,4 +57,5 @@ public class ProductVO {
 		return "ProductVO [bookId=" + bookId + ", bookName=" + bookName + ", bookPrice=" + bookPrice + ", bookCompany="
 				+ bookCompany + ", bookContent=" + bookContent + ", bookNum=" + bookNum + "]";
 	}
+	
 }

@@ -28,7 +28,9 @@ public class Login implements DbCommand {
 			session.setAttribute("id", vo.getId()); // 세션에 아이디 담기
 			session.setAttribute("author", vo.getAuthor()); // 세션에 권한 담기
 			session.setAttribute("name", vo.getName()); // 이름 담아주기
-			return "main/main.tiles";
+			session.setAttribute("tel", vo.getTel());
+			session.setAttribute("address", vo.getAddress());
+			return "mainListPaging.do";
 		}else {
 			request.setAttribute("message", "아이디 또는 패스워드가 일치하지 않습니다.");
 			return "main/loginForm.tiles";

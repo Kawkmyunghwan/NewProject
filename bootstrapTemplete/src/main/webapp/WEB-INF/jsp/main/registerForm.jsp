@@ -1,17 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- Register Section Begin -->
+
+<script>
+	$(function () {
+		$('#id').change(function () {
+			$('#idCheck').val('unChecked');
+		});
+
+		//idCheck 버튼을 클릭했을 때 
+		$("#idCheck").click(function () {
+			var userid = $("#id").val();
+
+			$.ajax({
+				type: 'POST',
+				data: {
+					id: userid
+				},
+				url: "ajaxIdCheck", //별도 서블릿으로 만들었다. *.do에서 제외(컨트롤러 안탐)
+				success: function (data) {
+					if (data > 0) {
+						alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+						$("#id").val("");
+						$("#id").focus();
+					} else {
+						alert("사용가능한 아이디입니다.");
+						$("#idCheck").val("checked");
+						$("#password").focus();
+					}
+				},
+				error: function (error) {
+					alert("error : " + error);
+				}
+			});
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	function formCheck() {
+		if (frm.id.value == "") {
+			alert("아이디를 입력하세요.");
+			frm.id.focus();
+			return false;
+		}
+
+		if (frm.idCheck.value == "unChecked") {
+			alert("아이디 중복체크를 하세요.");
+			return false;
+		}
+
+		if (frm.password.value == "") {
+			alert("패스워드를 입력하세요.");
+			frm.password.focus();
+			return false;
+		}
+
+		frm.submit();
+	}
+
+	function idCheckDo() {
+		var id = frm.id.value;
+		window.open("/DbTest/idCheck.do?id=" + id, "childForm", "width=570, height=350, resizable = no, scrollbars = no");
+
+	}
+</script>
+
     <div class="register-login-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="register-form">
                         <h2>Register</h2>
-                        <form class="user" id="frm" action="register.do" onsubmit="return formCheck()" method="post">
+                        <form class="user" id="frm" name="frm" action="register.do" method="post">
                             <div class="group-input">
                                 <label for="username">Username or email address *</label>
                                 <input type="text" id="id" name="id">
-                                <button type="button" class="btn btn-sm btn-primary" onclick="idCheckCall()" id="idCheck" value="No">중복체크</button>
+                                <button type="button" class="btn btn-sm btn-primary" id="idCheck" name="idCheck" value="unChecked">중복체크</button>
                             </div>
                             <input type="hidden" id="author" name="author" value="USER">
                             <div class="group-input">
@@ -34,7 +99,7 @@
                                 <label for="con-pass">Address</label>
                                 <input type="text" id="address" name="address">
                             </div>
-                            <button type="submit" class="site-btn register-btn">REGISTER</button>
+                            <button type="submit" onclick="formCheck()" class="site-btn register-btn">REGISTER</button>
                         </form>
                         <div class="switch-login">
                             <a href="loginForm.do" class="or-login">Or Login</a>
@@ -45,58 +110,4 @@
         </div>
     </div>
     <!-- Register Form Section End -->
-    <script type="text/javascript">
-	 function formCheck() {
-	      if(frm.idCheck.value != 'Yes') {
-	         alert("아이디 중복체크를 하세요.");
-	         return false;
-	      }
-	      
-	      if(frm.password.value == ""){
-	    	  alert("패스워드를 입력해주세요.")
-	    	  frm.password.focus();
-	    	  return false;
-	      }
-	      
-	      if(frm.name.value == ""){
-		    	  alert("이름을 입력해주세요..")
-		    	  frm.name.focus();
-		    	  return false;
-		      }
-	      
-	      if(frm.password.value != frm.password1.value) {  //패스워드 일치확인 함수
-	         alert("패스워드가 일치 하지 않습니다.");
-	         frm.password.value="";
-	         frm.password1.value="";
-	         frm.password.focus();
-	         return false;
-	      }
-	      return true;
-	   }
-
-   
-   function idCheckCall() {  //ajax로 아이디를 중복체크 하는함수
-      const xhttp = new XMLHttpRequest();  //ajax 객체를 생성
-      const id = frm.id.value;
-      xhttp.onreadystatechange = function() {  //ajax가 동작될 때 실행하는 메소드
-         if(xhttp.readyState==4){  //통신이 연결되서 데이터가 다 전달되었다면
-            if(xhttp.status==200){  // 정상적으로 수행되고 결과가 왔을때
-               var b = xhttp.responseText;
-               if(b == '1' ) {
-                  alert(id + "는 사용가능한 아이디 입니다.");
-                  frm.idCheck.value="Yes";
-                  frm.idCheck.style.display="none";
-                  frm.password.focus();
-               } else {
-                  alert(id + "는 이미 존재하는 아이디 입니다.");
-                  frm.id.value="";
-                  frm.focus();
-               }
-            }
-         }
-      }
-      xhttp.open("GET","ajaxIdCheck.do?id=" +id);  // 호줄해야할 방법과 주소
-      xhttp.send();  // 호출하는 부분
-   }
-   
-</script>
+    

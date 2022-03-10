@@ -32,10 +32,10 @@
 					</tfoot>
 					<tbody>
 						<tr>
-							<th></th>
-							<th></th>
-							<th></th>
-							<td></td>
+							<th>${id}</th>
+							<th>${name}</th>
+							<th>${tel}</th>
+							<td>${address}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -84,6 +84,49 @@
 					</tbody>
 				</table>
 				<button style="float: right">구매하기</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary">구매목록</h6>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+			<form>
+				<table class="table table-bordered" id="dataTable" width="100%"
+					cellspacing="0">
+					<thead>
+						<tr>
+							<th>name</th>
+							<th>price</th>
+							<th>company</th>
+							<th>img</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>name</th>
+							<th>price</th>
+							<th>Company</th>
+							<th>img</th>
+						</tr>
+					</tfoot>
+					<tbody>
+									
+							<c:forEach items="${buyCartList }" var="list2">
+								<tr>
+									<th>${list2.bookName }</th>
+									<th>${list2.bookPrice }</th>
+									<th>${list2.bookCompany }</th>
+									<td><img src="upload/${list2.image}" width="150" alt=""></td>
+								</tr>
+							</c:forEach>
+							
+					</tbody>
+				</table>				
 				</form>
 			</div>
 		</div>
