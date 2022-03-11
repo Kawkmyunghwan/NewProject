@@ -40,7 +40,6 @@ public class End implements DbCommand {
 			productVo = productService.select(productVo); // selectArr이라는 메소드를 만들어줘서, 배열을 값으로 받아 조회해주는 메소드를 만듬.
 			
 			vo.setBookId(productVo.getBookId()); // BuyCart의 BookId를 '배열'로 받아줘야함.
-			
 			buyCartDao.insert(vo); //잘못넣어줌
 			buyCartDao = new BuyCartServiceImpl();
 			

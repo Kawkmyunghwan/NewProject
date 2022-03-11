@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.edu.cart.web.Checkoutcart;
+import co.edu.cart.web.DeleteCart;
 import co.edu.cart.web.DropdownCart;
 import co.edu.cart.web.Gotocart;
 import co.edu.cart.web.Qucikcart;
@@ -65,6 +66,7 @@ public class FrontController extends HttpServlet {
 		map.put("/mypage.do", new Mypage());
 		map.put("/mainListPaging.do", new MainListPaging());
 		map.put("/checkoutcart.do", new Checkoutcart());
+		map.put("/deleteCart.do", new DeleteCart());
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

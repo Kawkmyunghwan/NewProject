@@ -9,7 +9,14 @@ public class BuyCartVO {
 	private String bookCompany;
 	private String image;
 	private int bookPrice;
+	private String bookBuyDate;
 	
+	public String getBookBuyDate() {
+		return bookBuyDate;
+	}
+	public void setBookBuyDate(String bookBuyDate) {
+		this.bookBuyDate = bookBuyDate;
+	}
 	public String getBookName() {
 		return bookName;
 	}

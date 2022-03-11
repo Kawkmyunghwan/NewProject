@@ -40,14 +40,12 @@ public class Mypage implements DbCommand {
 		
 		vo.setBookId(productVo.getBookId());
 		vo.setId((String)session.getAttribute("id"));
-		
-		CartDao.insert(vo); // CartDao의 insert 메소드를 통해 vo(책이름, 접속해있는 유저아이디)의 값을 테이블에 추가해줌.
+// 조건문을 만들기
+		if(vo.getBookId() != null) {
+			CartDao.insert(vo); // CartDao의 insert 메소드를 통해 vo(책이름, 접속해있는 유저아이디)의 값을 테이블에 추가해줌.
+		}
 		CartDao = new CartServiceImpl(); // 한번 사용한 후 close가 되기때문에, 다시 선언해줘야함.
 		request.setAttribute("cartList", CartDao.selectCartList((String)session.getAttribute("id")));
-		
-		
-		
-		
 		
 		
 //		----------------- 구매목록 리스트 -----------------------

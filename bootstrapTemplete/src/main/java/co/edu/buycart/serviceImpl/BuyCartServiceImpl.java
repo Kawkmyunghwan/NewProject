@@ -20,10 +20,11 @@ public class BuyCartServiceImpl extends DAO implements BuyCartService {
 	@Override
 	public List<BuyCartVO> selectCartList(String id) {
 		List<BuyCartVO> list = new ArrayList<>();
-		String sql = "select p.bookId, p.bookName, p.bookPrice, p.bookcompany, p.image, b.id\r\n"
+		String sql = "select p.bookId, p.bookName, p.bookPrice, p.bookcompany, p.image, b.id, b.bookbuydate\r\n"
 				+ "FROM buycart b, product p\r\n"
 				+ "WHERE b.bookid = p.bookid\r\n"
-				+ "AND b.id = ?";
+				+ "AND b.id = ?"
+				+ "ORDER BY b.bookbuydate DESC";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
@@ -36,6 +37,7 @@ public class BuyCartServiceImpl extends DAO implements BuyCartService {
 				vo.setBookName(rs.getString("bookName"));
 				vo.setBookPrice(rs.getInt("bookPrice"));
 				vo.setImage(rs.getString("image"));
+				vo.setBookBuyDate(rs.getString("bookBuyDate"));
 				list.add(vo);
 			}
 		}catch(SQLException e) {
@@ -76,7 +78,7 @@ public class BuyCartServiceImpl extends DAO implements BuyCartService {
 
 	@Override
 	public int insert(BuyCartVO vo) {
-			String sql = "INSERT INTO BUYCART(BOOKID, id) VALUES(?,?)";
+			String sql = "INSERT INTO BUYCART(BOOKID, id, BOOKBUYDATE) VALUES(?,?,sysdate)";
 			int r = 0;
 			try {
 				psmt = conn.prepareStatement(sql);

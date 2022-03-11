@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script>
+	function deleteCart(book_Id) {
+		const xhttp = new XMLHttpRequest()
+		xhttp.open("POST", "deleteCart.do", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send('bookId='+book_Id);
+		xhttp.onreadystatechange = function(){
+			if(this.readyState==4 && this.status==200){
+				document.getElementById('btn').parentNode.parentNode.remove();
+			}
+		}
+	}
+</script>
+
 <div class="container-fluid" style="width: 1200px">
 
 	<!-- Page Heading -->
@@ -12,6 +27,11 @@
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
+			
+			<form id="deleteFrm" name="deleteFrm" method="get" action="deleteCart.do" >
+				<input type="hidden" id="bookId" name="bookId">				 
+			</form>
+			
 				<table class="table table-bordered" id="dataTable" width="100%"
 					cellspacing="0">
 					<thead>
@@ -60,6 +80,7 @@
 							<th>price</th>
 							<th>company</th>
 							<th>img</th>
+							<th>DELETE</th>
 						</tr>
 					</thead>
 					<tfoot>
@@ -68,6 +89,7 @@
 							<th>price</th>
 							<th>Company</th>
 							<th>img</th>
+							<th>DELETE</th>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -78,6 +100,7 @@
 									<th>${list.bookPrice }</th>
 									<th>${list.bookCompany }</th>
 									<td><img src="upload/${list.image}" width="150" alt=""></td>
+									<th><button type="button" id="btn" name="btn" onclick="deleteCart(${list.bookId})">삭제</button><th>
 								</tr>
 							</c:forEach>
 							
@@ -104,6 +127,7 @@
 							<th>price</th>
 							<th>company</th>
 							<th>img</th>
+							<th>구매날짜</th>
 						</tr>
 					</thead>
 					<tfoot>
@@ -112,6 +136,7 @@
 							<th>price</th>
 							<th>Company</th>
 							<th>img</th>
+							<th>구매날짜</th>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -122,6 +147,7 @@
 									<th>${list2.bookPrice }</th>
 									<th>${list2.bookCompany }</th>
 									<td><img src="upload/${list2.image}" width="150" alt=""></td>
+									<th>${list2.bookBuyDate }</th>
 								</tr>
 							</c:forEach>
 							
@@ -135,4 +161,4 @@
 </div>
 <!-- /.container-fluid -->
 
-            
+

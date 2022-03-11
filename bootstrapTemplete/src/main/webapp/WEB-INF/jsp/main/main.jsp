@@ -107,17 +107,29 @@ function formFnc(book_id) {
 }
 
 function formFnc1(book_id) {
-	event.preventDefault();
-	console.log(book_id)
-	quickFrm1.bookId.value=book_id;
-	quickFrm1.submit();
+	if(${id != null}){
+		event.preventDefault();
+		console.log(book_id)
+		quickFrm1.bookId.value=book_id;
+		quickFrm1.submit();
+	}else{
+		alert("로그인 하세요.")
+		location.href = "loginForm.do";
+	}
 }
 function formFnc2(book_id) {
-	event.preventDefault();
-	console.log(book_id)
-	quickFrm2.bookId.value=book_id;
-	quickFrm2.submit();
+	if(${id != null}){
+		event.preventDefault();
+		console.log(book_id)
+		quickFrm2.bookId.value=book_id;
+		quickFrm2.submit();
+	}else{
+		alert("로그인 하세요.")
+		location.href = "loginForm.do";
+	}
 }
+
+
 
 
 function goPage(page) {

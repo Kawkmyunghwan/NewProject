@@ -91,6 +91,22 @@ public class CartServiceImpl extends DAO implements CartService {
 		return r;
 	}
 	
+	@Override
+	public int deleteByBookId(CartVO vo) {
+		String sql = "DELETE FROM CART WHERE BOOKID = ?";
+		int r = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getBookId());
+			r = psmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return r;
+	}
+	
 	private void close() {
 		try {
 			if (rs != null)
